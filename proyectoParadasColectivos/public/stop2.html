@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sitio Paradas</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/stop.css">
+    <script src="js/app.js"></script>
+    <script src="js/stop2.js"></script>
+</head>
+
+<body>
+    <div id='appStop'>
+        <h1 v-for='br of branch' v-if='stop.branch_id == br.id'>Paradas de {{br.name}}</h1>
+        <h1>Lista de Paradas</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Branch</th>
+                    <th>Latitud</th>
+                    <th>Longitud</th>
+                    <th>Proceso</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for='stop of stops'>
+                    <td>{{stop.id}}</td>
+                    <td>{{stop.name}}</td>
+                    <td v-for='branch of branches' v-if='stop.branch_id == branch.id'>{{branch.name}}</td>
+                    <td>{{stop.latitude}}</td>
+                    <td>{{stop.longitude}}</td>
+                    <td>
+                        <button class='btn btn-warning' v-on:click='editStop(stop.id, stopName, lat, long, branchList)'>editar</button>
+                        <button class='btn btn-danger' v-on:click='deleteStop(stop.id)'>borrar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+            <h2>Nueva creacion de Paradas</h2>
+            <input v-model='stopName' class='from-control' placeholder="Nombre">
+            <input v-model='lat' class='from-control' placeholder="Latitud">
+            <input v-model='long' class='from-control' placeholder="Longitud">
+            <select v-model='branchList' name="branchList">
+                <option v-bind:value="branch.id" v-for='branch of branches'>{{branch.name}}</option>
+            </select>
+            <button v-on:click='createStop(stopName, lat, long, branchList)' class='btn btn-success'>Crear Parada</button>
+    </div>
+    <div id="map"></div>
+    <script>/*
+        // Initialize and add the map
+function initMap() {
+    // The location of Uluru
+    var parada = { lat: -25.344, lng: 131.036 };
+    // The map, centered at Uluru
+    var map = new google.maps.Map(
+        document.getElementById('map'), { zoom: 4, center: parada });
+    // The marker, positioned at Uluru
+    var marker = new google.maps.Marker({ position: parada, map: map });
+}
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT_ugOBnHTosROEL5q9OcmzoOfcYq9OGY&callback=initMap">
+    */
+    </script>
+</body>
+
+</html>

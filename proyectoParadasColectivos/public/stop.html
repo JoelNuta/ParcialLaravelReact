@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sitio Paradas</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/stop.css">
+    <script src="js/app.js"></script>
+    <script src="js/stop.js"></script>
+</head>
+
+<body>
+    <div id='appStops'>
+        <h1>Paradas de {{branch.name}}</h1>
+        <h1>Lista de Paradas</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Latitud</th>
+                    <th>Longitud</th>
+                    <th>Proceso</th>
+                </tr>
+            </thead>
+            <!--
+            <div>
+                <select v-model='branchList' name="branchList">
+                    <option v-bind:value="branch.id" v-for='branch of branches'>{{branch.name}}</option>
+                </select>
+                <button v-on:click='linkto(branchList)' class='btn btn-success'>Ir al ramal</button>
+            </div>
+        -->
+
+
+            <tbody>
+                <tr v-for='stop of branch.stops'>
+                    <td>{{stop.id}}</td>
+                    <td>{{stop.name}}</td>
+                    <td>{{stop.latitude}}</td>
+                    <td>{{stop.longitude}}</td>
+                    <td>
+                        <button class='btn btn-danger' v-on:click='deleteStop(stop.id)'>borrar</button>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+            <h2>Nueva creacion de Paradas</h2>
+            <input v-model='stopToCreate.name' class='from-control' placeholder="Nombre">
+            <input v-model='stopToCreate.latitude' class='from-control' placeholder="Latitud">
+            <input v-model='stopToCreate.longitude' class='from-control' placeholder="Longitud">
+        <!--
+            <select v-model='branchList' name="branchList">
+                <option v-bind:value="branch.id" v-for='branch of branches'>{{branch.name}}</option>
+            </select>
+        -->
+            <button v-on:click='saveStop(stopToCreate)' class='btn btn-success'>Crear Parada</button>
+    </div>
+    <div id="map"></div>
+    <script>/*
+
+*/
+
+    </script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT_ugOBnHTosROEL5q9OcmzoOfcYq9OGY&callback=initStopApp">
+
+
+    </script>
+
+
+</body>
+
+</html>

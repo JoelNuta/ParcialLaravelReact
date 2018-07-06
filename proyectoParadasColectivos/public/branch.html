@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sitio Ramales</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/app.js"></script>
+    <script src="js/branch.js"></script>
+</head>
+
+<body>
+    <div id='appBranch'>
+        <h1>Lista de Ramales</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Proceso</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for='branch of branches'>
+                    <td>{{branch.id}}</td>
+                    <td><a v-bind:href="'http://localhost:8000/stop.html?branch_id='+ branch.id">{{branch.name}}</a></td>
+                    <td>
+                        <button class='btn btn-warning' v-on:click='editBranch(branch.id, editName)'>editar</button>
+                        <button class='btn btn-danger' v-on:click='deleteBranch(branch.id)'>borrar</button>
+                    </td>
+                </tr>
+                <input v-model='editName' class='from-control' placeholder="Editar Nombre">
+            </tbody>
+        </table>
+        <h2>Nueva creacion de Ramales</h2>
+        <input v-model='saveName' class='from-control'>
+        <button v-on:click='createBranch(saveName)' class='btn btn-success'>Crear Ramal</button>
+    </div>
+</body>
+
+</html>
